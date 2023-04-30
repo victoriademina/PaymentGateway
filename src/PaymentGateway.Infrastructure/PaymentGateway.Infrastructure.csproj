@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BankSimulator\BankSimulator.csproj" />
       <ProjectReference Include="..\PaymentGateway.Application\PaymentGateway.Application.csproj" />
       <ProjectReference Include="..\PaymentGateway.Domain\PaymentGateway.Domain.csproj" />
     </ItemGroup>
