@@ -1,3 +1,5 @@
+using PaymentGateway.Application.Common.Exceptions;
+using PaymentGateway.Domain.Enums;
 using PaymentGateway.Infrastructure.Persistence;
 
 namespace PaymentGateway.Infrastructure.Tests.Persistence;
@@ -21,7 +23,7 @@ public class PaymentGatewayRepositoryTests
     }
 
     [Test]
-    public async Task AddMerchantToDatabase()
+    public async Task AddMerchantToDatabaseTest()
     {
         // Act
         var merchant = await _repository.AddMerchant();
@@ -29,5 +31,51 @@ public class PaymentGatewayRepositoryTests
         // Assert
         Assert.IsNotEmpty(merchant.Id.ToString());
         Assert.That(_dbContext.Merchants.Contains(merchant));
+    }
+
+    [Test]
+    public async Task CreateTransactionTest()
+    {
+        // Arrange
+        var merchant = await _repository.AddMerchant();
+        var cardNumber = "1111 1111 1111 1111";
+
+        // Act
+        var transaction = await _repository.CreateTransaction(merchant, cardNumber);
+        
+        // Assert
+        Assert.That(_dbContext.Transactions.Contains(transaction));
+        Assert.That(transaction.Merchant, Is.EqualTo(merchant));
+        Assert.That(transaction.Status, Is.EqualTo(Status.Pending));
+        Assert.That(transaction.CardNumber, Is.EqualTo(cardNumber));
+    }
+
+    [Test]
+    public async Task GetTransactionByIdWithValidTransactionIdTest()
+    {
+        // Arrange
+        var merchant = await _repository.AddMerchant();
+        var cardNumber = "1111 1111 1111 1111";
+        var transaction = await _repository.CreateTransaction(merchant, cardNumber);
+
+        // Act
+        var result = await _repository.GetTransactionById(transaction.Id);
+
+        // Assert
+        Assert.IsNotNull(result);
+        Assert.That(result.Merchant, Is.EqualTo(merchant));
+        Assert.That(result.CardNumber, Is.EqualTo(cardNumber));
+    }
+
+    [Test]
+    public async Task GetTransactionByIdWithInvalidTransactionIdTest()
+    {
+        // Arrange
+        var merchant = await _repository.AddMerchant();
+        var cardNumber = "1111 1111 1111 1111";
+        await _repository.CreateTransaction(merchant, cardNumber);
+        
+        // Assert
+        Assert.ThrowsAsync<TransactionNotFoundException>(async () => await _repository.GetTransactionById(Guid.Empty));
     }
 }
