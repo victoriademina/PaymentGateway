@@ -1,4 +1,4 @@
-namespace PaymentGateway.Application.Common.Exceptions;
+namespace PaymentGateway.Application.Common.Repository;
 
 public class TransactionNotFoundException : Exception
 {

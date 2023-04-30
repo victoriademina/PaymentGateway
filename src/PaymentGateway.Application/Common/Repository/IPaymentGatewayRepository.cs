@@ -1,6 +1,6 @@
 using PaymentGateway.Domain.Entities;
 
-namespace PaymentGateway.Application.Common.Interfaces;
+namespace PaymentGateway.Application.Common.Repository;
 
 public interface IPaymentGatewayRepository
 {

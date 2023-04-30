@@ -1,4 +1,4 @@
-using PaymentGateway.Application.Common.Exceptions;
+using PaymentGateway.Application.Common.Repository;
 using PaymentGateway.Domain.Enums;
 using PaymentGateway.Infrastructure.Persistence;
 
