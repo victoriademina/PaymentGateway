@@ -5,7 +5,7 @@ using PaymentGateway.Domain.Enums;
 
 namespace PaymentGateway.Application.Commands.CreateTransaction;
 
-public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest, Status>
+public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest, CreateTransactionResponse>
 {
     private readonly IPaymentGatewayRepository _repository;
     private readonly IBankAdapter _bankAdapter;
@@ -15,7 +15,7 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
         _repository = repository;
         _bankAdapter = bankAdapter;
     }
-    public async Task<Status> Handle(CreateTransactionRequest request, CancellationToken cancellationToken)
+    public async Task<CreateTransactionResponse> Handle(CreateTransactionRequest request, CancellationToken cancellationToken)
     {
         var merchant = await _repository.GetMerchantById(request.MerchantId);
         var transaction = await _repository.CreateTransaction(merchant, request.CardDetails.CardNumber);
@@ -26,6 +26,10 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
             _ => Status.Failed
         };
         await _repository.UpdateTransactionStatus(transaction.Id, status);
-        return status;
+        return new CreateTransactionResponse
+        {
+            TransactionId = transaction.Id,
+            Status = status
+        };
     }
 }

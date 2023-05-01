@@ -70,7 +70,8 @@ public class CreateTransactionHandlerTests
         }, new CancellationToken());
         
         // Assert
-        Assert.That(result, Is.EqualTo(Status.Success));
+        Assert.That(result.TransactionId, Is.EqualTo(_transaction.Id));
+        Assert.That(result.Status, Is.EqualTo(Status.Success));
         _repository.Verify(_ => _.UpdateTransactionStatus(_transaction.Id, Status.Success), Times.Once);
     }
     
@@ -98,7 +99,8 @@ public class CreateTransactionHandlerTests
         }, new CancellationToken());
         
         // Assert
-        Assert.That(result, Is.EqualTo(Status.Failed));
+        Assert.That(result.TransactionId, Is.EqualTo(_transaction.Id));
+        Assert.That(result.Status, Is.EqualTo(Status.Failed));
         _repository.Verify(_ => _.UpdateTransactionStatus(_transaction.Id, Status.Failed), Times.Once);
     }
 }
