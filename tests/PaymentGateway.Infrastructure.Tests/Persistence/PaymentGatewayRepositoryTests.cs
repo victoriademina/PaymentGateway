@@ -33,6 +33,29 @@ public class PaymentGatewayRepositoryTests
         Assert.IsNotEmpty(merchant.Id.ToString());
         Assert.That(_dbContext.Merchants.Contains(merchant));
     }
+    
+    [Test]
+    public async Task GetMerchantByIdWithValidMerchantIdTest()
+    {
+        // Arrange
+        var merchant = await _repository.AddMerchant();
+
+        // Act
+        var result = await _repository.GetMerchantById(merchant.Id);
+
+        // Assert
+        Assert.That(result, Is.EqualTo(merchant));
+    }
+    
+    [Test]
+    public async Task GetMerchantByIdWithInvalidMerchantIdTest()
+    {
+        // Arrange
+        await _repository.AddMerchant();
+
+        // Assert
+        Assert.ThrowsAsync<MerchantNotFoundException>(async () => await _repository.GetMerchantById(Guid.Empty));
+    }
 
     [Test]
     public async Task CreateTransactionTest()

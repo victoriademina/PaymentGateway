@@ -20,6 +20,17 @@ public class PaymentGatewayRepository : IPaymentGatewayRepository
         await _context.SaveChangesAsync();
         return merchant;
     }
+    
+    public async Task<Merchant> GetMerchantById(Guid merchantId)
+    {
+        var merchant = await _context.Merchants.FindAsync(merchantId);
+        if (merchant == null)
+        {
+            throw new MerchantNotFoundException($"Merchant with ID {merchantId} is not found.");
+        }
+
+        return merchant;
+    }
 
     public async Task<Transaction> CreateTransaction(Merchant merchant, string cardNumber)
     {

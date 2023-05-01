@@ -14,7 +14,7 @@ public class UltimateBankClientAdapter : IBankAdapter
     public Task<BankResponse> ProcessPayment(BankRequest bankRequest)
     {
         var response = _bankClient.PayByCard(
-            bankRequest.PaymentId,
+            bankRequest.TransactionId,
             bankRequest.CardDetails.CardNumber,
             bankRequest.CardDetails.Cvv,
             bankRequest.CardDetails.ExpiryMonth,

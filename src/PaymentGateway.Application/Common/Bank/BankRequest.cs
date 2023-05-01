@@ -3,6 +3,6 @@ using PaymentGateway.Domain.Entities;
 namespace PaymentGateway.Application.Common.Bank;
 
 public record BankRequest(
-    Guid PaymentId,
+    Guid TransactionId,
     CardDetails CardDetails,
     PaymentAmount PaymentAmount);
