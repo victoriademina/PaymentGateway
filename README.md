@@ -20,6 +20,8 @@ This project relies on the following dependencies:
 * [Entity Framework](https://learn.microsoft.com/en-us/ef/core/providers/in-memory/?tabs=dotnet-core-cli)
 * [NUnit](https://nunit.org/)
 * [Moq](https://github.com/moq)
+* [Serilog](https://github.com/serilog/serilog/wiki/Getting-Started)
+* [Serilog.Sinks.Console](https://github.com/serilog/serilog/wiki/Getting-Started)
 
 ## Project Structure
 
