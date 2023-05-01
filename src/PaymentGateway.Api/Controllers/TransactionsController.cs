@@ -18,14 +18,13 @@ public class TransactionsController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<GetTransactionResponse>> GetTransaction(Guid id,
-        GetTransactionDto getTransactionDto)
+    [HttpGet("{merchantId}/{transactionId}")]
+    public async Task<ActionResult<GetTransactionResponse>> GetTransaction(Guid merchantId, Guid transactionId)
     {
         var request = new GetTransactionRequest
         {
-            MerchantId = getTransactionDto.MerchantId,
-            TransactionId = id
+            MerchantId = merchantId,
+            TransactionId = transactionId
         };
         var response = await _mediator.Send(request);
         return response;

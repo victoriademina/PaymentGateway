@@ -34,7 +34,7 @@ public class TransactionsControllerTests
         });
 
         // Act
-        var result = await _transactionsController.GetTransaction(transactionId, new GetTransactionDto(merchantId));
+        var result = await _transactionsController.GetTransaction(merchantId, transactionId);
 
         // Assert
         Assert.That(result.Value.TransactionId, Is.EqualTo(transactionId));
