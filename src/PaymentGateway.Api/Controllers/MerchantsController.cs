@@ -16,9 +16,9 @@ public class MerchantsController : ControllerBase
     }
     
     [HttpPost("create")]
-    public async Task<ActionResult<CreateMerchantResponse>> CreateTransaction()
+    public async Task<ActionResult<CreateMerchantResponse>> CreateMerchant()
     {
         var response = await _mediator.Send(new CreateMerchantRequest());
-        return Ok(response);
+        return response;
     }
 }

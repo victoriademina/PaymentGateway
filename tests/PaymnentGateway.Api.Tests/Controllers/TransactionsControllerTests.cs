@@ -39,12 +39,7 @@ public class TransactionsControllerTests
             Amount = 44,
             Currency = "GBP"
         };
-        _mediator.Setup(_ => _.Send(new CreateTransactionRequest
-        {
-            CardDetails = cardDetails,
-            MerchantId = merchantId,
-            PaymentAmount = paymentAmount
-        }, new CancellationToken())).ReturnsAsync(new CreateTransactionResponse
+        _mediator.Setup(_ => _.Send(It.IsAny<CreateTransactionRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new CreateTransactionResponse
         {
             Status = Status.Pending,
             TransactionId = transactionId

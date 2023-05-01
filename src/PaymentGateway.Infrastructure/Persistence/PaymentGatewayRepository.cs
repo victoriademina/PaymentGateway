@@ -11,10 +11,6 @@ public class PaymentGatewayRepository : IPaymentGatewayRepository
     public PaymentGatewayRepository(PaymentGatewayDbContext context)
     {
         _context = context;
-        var merchant = new Merchant { Id = Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6") };
-        _context.Add(merchant);
-        _context.SaveChanges();
-        Console.WriteLine($"Merchant ID: {merchant.Id}");
     }
 
     public async Task<Merchant> AddMerchant()

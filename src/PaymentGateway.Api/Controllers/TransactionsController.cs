@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Api.Dtos;
 using PaymentGateway.Application.Commands.CreateTransaction;
@@ -26,6 +27,6 @@ public class TransactionsController : ControllerBase
             PaymentAmount = createTransactionDto.PaymentAmount
         };
         var response = await _mediator.Send(request);
-        return Ok(response);
+        return response;
     }
 }
