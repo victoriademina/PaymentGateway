@@ -99,4 +99,21 @@ public class PaymentGatewayRepositoryTests
         // Assert
         Assert.ThrowsAsync<TransactionNotFoundException>(async () => await _repository.GetTransactionById(Guid.Empty));
     }
+
+    [Test]
+    public async Task UpdateTransactionStatusTest()
+    {
+        // Arrange
+        var merchant = await _repository.AddMerchant();
+        var transaction = await _repository.CreateTransaction(merchant, _cardNumber);
+        var status = Status.Success;
+        
+        // Act
+        var result = await _repository.UpdateTransactionStatus(transaction.Id, status);
+        var updatedTransaction = await _repository.GetTransactionById(transaction.Id);
+        
+        // Assert
+        Assert.That(result.Status, Is.EqualTo(status));
+        Assert.That(updatedTransaction.Status, Is.EqualTo(status));
+    }
 }

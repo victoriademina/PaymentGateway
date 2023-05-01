@@ -58,4 +58,14 @@ public class PaymentGatewayRepository : IPaymentGatewayRepository
 
         return transaction;
     }
+    
+    public async Task<Transaction> UpdateTransactionStatus(Guid transactionId, Status status)
+    {
+        var transaction = await GetTransactionById(transactionId);
+        transaction.Status = status;
+        _context.Transactions.Update(transaction);
+        await _context.SaveChangesAsync();
+
+        return transaction;
+    }
 }
