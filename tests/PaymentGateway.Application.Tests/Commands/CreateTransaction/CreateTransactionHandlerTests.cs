@@ -7,7 +7,7 @@ using PaymentGateway.Domain.Enums;
 
 namespace PaymentGateway.Application.Tests.Commands.CreateTransaction;
 
-public class Tests
+public class CreateTransactionHandlerTests
 {
     private static readonly Merchant _merchant = new Merchant { Id = Guid.NewGuid() };
 
@@ -18,6 +18,20 @@ public class Tests
         Merchant = _merchant,
         MerchantId = _merchant.Id,
         Status = Status.Pending
+    };
+    
+    private static readonly CardDetails _cardDetails = new CardDetails
+    {
+        CardNumber = _transaction.CardNumber,
+        Cvv = "123",
+        ExpiryMonth = 4,
+        ExpiryYear = 2028,
+        Owner = "Severus Snape"
+    };
+    private static readonly PaymentAmount _paymentAmount = new PaymentAmount
+    {
+        Amount = 345,
+        Currency = "GBP"
     };
 
     private Mock<IPaymentGatewayRepository> _repository;
@@ -36,20 +50,6 @@ public class Tests
     public async Task HandleSuccessfulPaymentTest()
     {
         // Arrange
-        var cardDetails = new CardDetails
-        {
-            CardNumber = _transaction.CardNumber,
-            Cvv = "123",
-            ExpiryMonth = 4,
-            ExpiryYear = 2028,
-            Owner = "Severus Snape"
-        };
-        var paymentAmount = new PaymentAmount
-        {
-            Amount = 345,
-            Currency = "GBP"
-        };
-        
         _repository
             .Setup(_ => _.GetMerchantById(_merchant.Id))
             .ReturnsAsync(_merchant);
@@ -57,20 +57,48 @@ public class Tests
             .Setup(_ => _.CreateTransaction(_merchant, _transaction.CardNumber))
             .ReturnsAsync(_transaction);
         _bankAdapter
-            .Setup(_ => _.ProcessPayment(new BankRequest(_transaction.Id, cardDetails, paymentAmount)))
+            .Setup(_ => _.ProcessPayment(new BankRequest(_transaction.Id, _cardDetails, _paymentAmount)))
             .ReturnsAsync(new BankResponse(_transaction.Id, PaymentStatus.Success, null));
 
         // Act
         var result = await _handler.Handle(new CreateTransactionRequest
         {
-            CardDetails = cardDetails,
+            CardDetails = _cardDetails,
             MerchantId = _merchant.Id,
-            PaymentAmount = paymentAmount,
+            PaymentAmount = _paymentAmount,
             TransactionId = _transaction.Id
         }, new CancellationToken());
         
         // Assert
         Assert.That(result, Is.EqualTo(Status.Success));
         _repository.Verify(_ => _.UpdateTransactionStatus(_transaction.Id, Status.Success), Times.Once);
+    }
+    
+    [Test]
+    public async Task HandleFailedPaymentTest()
+    {
+        // Arrange
+        _repository
+            .Setup(_ => _.GetMerchantById(_merchant.Id))
+            .ReturnsAsync(_merchant);
+        _repository
+            .Setup(_ => _.CreateTransaction(_merchant, _transaction.CardNumber))
+            .ReturnsAsync(_transaction);
+        _bankAdapter
+            .Setup(_ => _.ProcessPayment(new BankRequest(_transaction.Id, _cardDetails, _paymentAmount)))
+            .ReturnsAsync(new BankResponse(_transaction.Id, PaymentStatus.Failure, "Some reason"));
+
+        // Act
+        var result = await _handler.Handle(new CreateTransactionRequest
+        {
+            CardDetails = _cardDetails,
+            MerchantId = _merchant.Id,
+            PaymentAmount = _paymentAmount,
+            TransactionId = _transaction.Id
+        }, new CancellationToken());
+        
+        // Assert
+        Assert.That(result, Is.EqualTo(Status.Failed));
+        _repository.Verify(_ => _.UpdateTransactionStatus(_transaction.Id, Status.Failed), Times.Once);
     }
 }
