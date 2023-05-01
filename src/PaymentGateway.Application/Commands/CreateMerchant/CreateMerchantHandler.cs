@@ -1,5 +1,7 @@
+using System.Reflection.Metadata.Ecma335;
 using MediatR;
 using PaymentGateway.Application.Common.Repository;
+using Serilog;
 
 namespace PaymentGateway.Application.Commands.CreateMerchant;
 
@@ -13,6 +15,8 @@ public class CreateMerchantHandler : IRequestHandler<CreateMerchantRequest, Crea
     }
     public async Task<CreateMerchantResponse> Handle(CreateMerchantRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("Handling request to add new merchant to database");
+        
         var merchant = await _repository.AddMerchant();
         return new CreateMerchantResponse{MerchantId = merchant.Id};
     }

@@ -1,6 +1,7 @@
 using PaymentGateway.Application.Common.Repository;
 using PaymentGateway.Domain.Entities;
 using PaymentGateway.Domain.Enums;
+using Serilog;
 
 namespace PaymentGateway.Infrastructure.Persistence;
 
@@ -28,7 +29,6 @@ public class PaymentGatewayRepository : IPaymentGatewayRepository
         {
             throw new MerchantNotFoundException($"Merchant with ID {merchantId} is not found.");
         }
-
         return merchant;
     }
 
@@ -55,7 +55,6 @@ public class PaymentGatewayRepository : IPaymentGatewayRepository
         {
             throw new TransactionNotFoundException($"Transaction with ID {transactionId} is not found.");
         }
-
         return transaction;
     }
     
@@ -65,7 +64,6 @@ public class PaymentGatewayRepository : IPaymentGatewayRepository
         transaction.Status = status;
         _context.Transactions.Update(transaction);
         await _context.SaveChangesAsync();
-
         return transaction;
     }
 }

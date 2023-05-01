@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Serilog" Version="3.0.0-dev-01970" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="4.1.1-dev-00910" />
+    </ItemGroup>
+
 </Project>

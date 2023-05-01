@@ -1,5 +1,6 @@
 using BankSimulator.Sdk;
 using PaymentGateway.Application.Common.Bank;
+using Serilog;
 
 namespace PaymentGateway.Infrastructure.BankSimulatorAdapter;
 
@@ -29,6 +30,10 @@ public class UltimateBankClientAdapter : IBankAdapter
             1 => PaymentStatus.Failure,
             _ => PaymentStatus.InternalError
         };
+        
+        Log.Information(
+            "Bank response: payment ID - {PaymentId}, status - {Status}, response reason: {ResponseReason}", 
+            response.PaymentId, status, response.Reason);
         return Task.FromResult(new BankResponse(
             response.PaymentId,
             status,

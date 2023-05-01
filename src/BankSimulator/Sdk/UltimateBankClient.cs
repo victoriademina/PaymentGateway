@@ -1,3 +1,5 @@
+using Serilog;
+
 namespace BankSimulator.Sdk;
 
 public class UltimateBankClient
@@ -28,14 +30,16 @@ public class UltimateBankClient
     {
         if (CardsAllowList.Contains(cardNumber))
         {
+            Log.Information("The card is in Allow list, payment successful");
             return new ClientResponse(paymentId, 0, null);
         }
 
         if (CardsDenyList.Contains(cardNumber))
         {
+            Log.Information("The card is in Deny list, payment denied");
             return new ClientResponse(paymentId, 1, "Your card was denied.");
         }
-
+        Log.Information("Internal error");
         return new ClientResponse(paymentId, 2, "Internal error, please try later.");
     }
 }

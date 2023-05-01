@@ -1,5 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=07597f11_002De002_002D4c11_002D8f40_002D9b60b46ee7a7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PaymentGatewayRepositoryTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=07597f11_002De002_002D4c11_002D8f40_002D9b60b46ee7a7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PaymentGatewayRepositoryTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::B3181DAA-A02B-496B-B1EC-2199E80894C8::net7.0::PaymentGateway.Infrastructure.Tests.Persistence.PaymentGatewayRepositoryTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::B3181DAA-A02B-496B-B1EC-2199E80894C8::net7.0::PaymentGateway.Infrastructure.Tests.BankSimulatorAdapter.UltimateBankClientAdapterTests&lt;/TestId&gt;
@@ -13,7 +13,7 @@
     &lt;TestId&gt;NUnit3x::BBAC51ED-5CF6-4A6C-A25D-B19DEC6A303B::net7.0::PaymentGateway.Api.Tests.Controllers.TransactionsControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bf0bc6e6_002D6954_002D48f0_002D81a3_002Dc60c878c03a5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TransactionsControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bf0bc6e6_002D6954_002D48f0_002D81a3_002Dc60c878c03a5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TransactionsControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::BBAC51ED-5CF6-4A6C-A25D-B19DEC6A303B::net7.0::PaymentGateway.Api.Tests.Controllers.TransactionsControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;

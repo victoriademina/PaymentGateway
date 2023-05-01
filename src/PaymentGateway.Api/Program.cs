@@ -1,10 +1,16 @@
-using System.Reflection;
 using BankSimulator.Sdk;
 using PaymentGateway.Application;
 using PaymentGateway.Application.Common.Bank;
 using PaymentGateway.Application.Common.Repository;
 using PaymentGateway.Infrastructure.BankSimulatorAdapter;
 using PaymentGateway.Infrastructure.Persistence;
+using Serilog;
+
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
