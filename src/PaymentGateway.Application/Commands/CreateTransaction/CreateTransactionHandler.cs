@@ -15,8 +15,17 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
         _repository = repository;
         _bankAdapter = bankAdapter;
     }
-    public Task<Status> Handle(CreateTransactionRequest request, CancellationToken cancellationToken)
+    public async Task<Status> Handle(CreateTransactionRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var merchant = await _repository.GetMerchantById(request.MerchantId);
+        var transaction = await _repository.CreateTransaction(merchant, request.CardDetails.CardNumber);
+        var bankResponse = await _bankAdapter.ProcessPayment(new BankRequest(transaction.Id, request.CardDetails, request.PaymentAmount));
+        var status = bankResponse.Status switch
+        {
+            PaymentStatus.Success => Status.Success,
+            _ => Status.Failed
+        };
+        await _repository.UpdateTransactionStatus(transaction.Id, status);
+        return status;
     }
 }

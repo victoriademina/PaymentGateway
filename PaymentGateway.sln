@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSimulator", "src\BankSimulator\BankSimulator.csproj", "{DC6342D1-FC8F-427B-A759-F234FC451072}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Application.Tests", "tests\PaymentGateway.Application.Tests\PaymentGateway.Application.Tests.csproj", "{A5613F6F-0552-4ADA-AC9E-5D5A41D43690}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{DC6342D1-FC8F-427B-A759-F234FC451072}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC6342D1-FC8F-427B-A759-F234FC451072}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC6342D1-FC8F-427B-A759-F234FC451072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5613F6F-0552-4ADA-AC9E-5D5A41D43690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5613F6F-0552-4ADA-AC9E-5D5A41D43690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5613F6F-0552-4ADA-AC9E-5D5A41D43690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5613F6F-0552-4ADA-AC9E-5D5A41D43690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
