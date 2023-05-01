@@ -17,6 +17,7 @@ This project relies on the following dependencies:
 
 * [.NET 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 * [MediatR](https://discordnet.dev/guides/other_libs/mediatr.html)
+* [Entity Framework with in-memory database provider](https://learn.microsoft.com/en-us/ef/core/providers/in-memory/?tabs=dotnet-core-cli)
 * [NUnit](https://nunit.org/)
 * [Moq](https://github.com/moq)
 
