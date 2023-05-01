@@ -15,30 +15,36 @@ Once you have the project files, you can open the solution in IDE of your choice
 
 This project relies on the following dependencies:
 
-* .NET 7
-* NUnit
-* Moq
-* MediatR
+* [.NET 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+* [MediatR](https://discordnet.dev/guides/other_libs/mediatr.html)
+* [NUnit](https://nunit.org/)
+* [Moq](https://github.com/moq)
 
 ## Project Structure
 
 The Payment Gateway project is structured as follows:
 
-* 
-* 
-* 
-* 
-* 
+* BankSimulator
+* PaymentGateway.Api
+* PaymentGateway.Application
+* PaymentGateway.Domain
+* PaymentGateway.Infrastructure
 
 ## Usage
 
 The Payment Gateway API is a RESTful API that exposes the following endpoints:
 
-* `POST /api/merchants/create`: This endpoint is used to create a merchant, who then can be used to make transactions via Payment Gateway.
-* `POST /api/transactions/create`: This endpoint is used to create a transaction. 
-* `GET /api/transactions/get/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
+* `POST /merchants/create`: This endpoint is used to create a merchant, who then can be used to make transactions via Payment Gateway.
+* `POST /transactions/create`: This endpoint is used to create a transaction. 
+* `GET /transactions/get/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
 
 To use the Payment Gateway API, you can send HTTP requests to these endpoints using a tool such as Postman.
+
+## Assumptions
+
+## Areas for improvements
+
+## Recommended Choice of Cloud Technologies
 
 ## Acknowledgements
 
