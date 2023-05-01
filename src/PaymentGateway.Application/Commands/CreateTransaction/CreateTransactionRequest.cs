@@ -1,6 +1,5 @@
 using MediatR;
 using PaymentGateway.Domain.Entities;
-using PaymentGateway.Domain.Enums;
 
 namespace PaymentGateway.Application.Commands.CreateTransaction;
 

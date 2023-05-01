@@ -6,5 +6,6 @@
     &lt;TestId&gt;NUnit3x::A5613F6F-0552-4ADA-AC9E-5D5A41D43690::net7.0::PaymentGateway.Application.Tests.Commands.CreateTransaction.Tests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::A5613F6F-0552-4ADA-AC9E-5D5A41D43690::net7.0::PaymentGateway.Application.Tests.Commands.CreateTransaction.CreateTransactionHandlerTests.HandleFailedPaymentTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::A5613F6F-0552-4ADA-AC9E-5D5A41D43690::net7.0::PaymentGateway.Application.Tests.Commands.CreateTransaction.CreateTransactionHandlerTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::A5613F6F-0552-4ADA-AC9E-5D5A41D43690::net7.0::PaymentGateway.Application.Tests.Queries.GetTransaction.GetTransactionHandlerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
