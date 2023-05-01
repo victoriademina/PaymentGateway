@@ -18,6 +18,10 @@ public class TransactionsController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Retrieves a transaction by merchant ID and transaction ID.
+    /// </summary>
+    /// <returns>The response containing the new transaction ID and its status.</returns>
     [HttpGet("{merchantId}/{transactionId}")]
     public async Task<ActionResult<GetTransactionResponse>> GetTransaction(Guid merchantId, Guid transactionId)
     {
@@ -33,7 +37,11 @@ public class TransactionsController : ControllerBase
         Log.Information("Retrieved a transaction with Transaction ID: {TransactionId}", response.TransactionId);
         return response;
     }
-
+    
+    /// <summary>
+    /// Creates a new transaction.
+    /// </summary>
+    /// <returns>The response containing the new transaction ID and its status.</returns>
     [HttpPost("create")]
     public async Task<ActionResult<CreateTransactionResponse>> CreateTransaction(CreateTransactionDto createTransactionDto)
     {

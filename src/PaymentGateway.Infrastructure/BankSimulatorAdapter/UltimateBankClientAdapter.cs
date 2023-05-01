@@ -4,6 +4,9 @@ using Serilog;
 
 namespace PaymentGateway.Infrastructure.BankSimulatorAdapter;
 
+/// <summary>
+/// Adapter for processing payments with the Ultimate Bank Client.
+/// </summary>
 public class UltimateBankClientAdapter : IBankAdapter
 {
     private readonly UltimateBankClient _bankClient;

@@ -6,6 +6,9 @@ using PaymentGateway.Domain.Enums;
 
 namespace PaymentGateway.Application.Commands.CreateTransaction;
 
+/// <summary>
+/// Handles the creation of a new transaction.
+/// </summary>
 public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest, CreateTransactionResponse>
 {
     private readonly IPaymentGatewayRepository _repository;
@@ -16,6 +19,13 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
         _repository = repository;
         _bankAdapter = bankAdapter;
     }
+    
+    /// <summary>
+    /// Handles a request to create a new transaction.
+    /// </summary>
+    /// <param name="request">The request to create a new transaction.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The response containing the ID of the created transaction and its status.</returns>
     public async Task<CreateTransactionResponse> Handle(CreateTransactionRequest request, CancellationToken cancellationToken)
     {
         Log.Information("Handling request to add new transaction to database");

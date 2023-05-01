@@ -3,6 +3,9 @@ using PaymentGateway.Application.Common.Repository;
 
 namespace PaymentGateway.Application.Queries.GetTransaction;
 
+/// <summary>
+/// Handles the <see cref="GetTransactionRequest"/> and returns the corresponding <see cref="GetTransactionResponse"/>.
+/// </summary>
 public class GetTransactionHandler : IRequestHandler<GetTransactionRequest, GetTransactionResponse>
 {
     private readonly IPaymentGatewayRepository _repository;

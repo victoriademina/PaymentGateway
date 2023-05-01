@@ -16,6 +16,10 @@ public class MerchantsController : ControllerBase
         _mediator = mediator;
     }
     
+    /// <summary>
+    /// Creates a new merchant.
+    /// </summary>
+    /// <returns>The response containing the new merchant ID.</returns>
     [HttpPost("create")]
     public async Task<ActionResult<CreateMerchantResponse>> CreateMerchant()
     {
