@@ -49,7 +49,7 @@ public class GetTransactionHandlerTests
     }
     
     [Test]
-    public async Task AuthFailureTest()
+    public void AuthFailureTest()
     {
         // Arrange
         _repository
