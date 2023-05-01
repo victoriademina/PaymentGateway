@@ -46,6 +46,12 @@ To use the Payment Gateway API, you can send HTTP requests to these endpoints us
 
 ## Recommended Choice of Cloud Technologies
 
+**Amazon Web Services**
+- EC2 - run back-end
+- DynamoDB - serverless NoSQL database. 
+- AWS SQS - a message queuing service queue for enabling event-driven communicaton between BankAdapter and BankSimulator.
+- AWS CodePipelne/CircleCI/Jenkins - set up CI/CD
+
 ## Acknowledgements
 
 ## Contributing
