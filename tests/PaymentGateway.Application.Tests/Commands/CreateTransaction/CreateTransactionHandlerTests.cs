@@ -66,7 +66,6 @@ public class CreateTransactionHandlerTests
             CardDetails = _cardDetails,
             MerchantId = _merchant.Id,
             PaymentAmount = _paymentAmount,
-            TransactionId = _transaction.Id
         }, new CancellationToken());
         
         // Assert
@@ -95,7 +94,6 @@ public class CreateTransactionHandlerTests
             CardDetails = _cardDetails,
             MerchantId = _merchant.Id,
             PaymentAmount = _paymentAmount,
-            TransactionId = _transaction.Id
         }, new CancellationToken());
         
         // Assert
