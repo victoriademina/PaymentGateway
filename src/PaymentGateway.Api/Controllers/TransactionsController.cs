@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Api.Dtos;
 using PaymentGateway.Application.Commands.CreateTransaction;
+using PaymentGateway.Application.Queries.GetTransaction;
 
 namespace PaymentGateway.Api.Controllers;
 
@@ -15,6 +16,19 @@ public class TransactionsController : ControllerBase
     public TransactionsController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<GetTransactionResponse>> GetTransaction(Guid id,
+        GetTransactionDto getTransactionDto)
+    {
+        var request = new GetTransactionRequest
+        {
+            MerchantId = getTransactionDto.MerchantId,
+            TransactionId = id
+        };
+        var response = await _mediator.Send(request);
+        return response;
     }
 
     [HttpPost("create")]

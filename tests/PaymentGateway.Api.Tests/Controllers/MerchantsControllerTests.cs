@@ -3,7 +3,7 @@ using Moq;
 using PaymentGateway.Api.Controllers;
 using PaymentGateway.Application.Commands.CreateMerchant;
 
-namespace PaymnentGateway.Api.Tests.Controllers;
+namespace PaymentGateway.Api.Tests.Controllers;
 
 public class MerchantsControllerTests
 {
