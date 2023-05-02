@@ -22,9 +22,21 @@ Follow these simple steps to run the project:
 
 Enjoy! 🙌
 
-## Project Structure
+## Project Architecture
 
-The Payment Gateway project is structured as follows:
+The project was developed following the [Clean Architecture principles](https://jasontaylor.dev/clean-architecture-getting-started/). 
+According to the Clean Architecture, **Domain** and **Application** layers are at the centre of the design, the **Core** of the system.
+All dependencies flow inwards and Core has no dependency on any other layer. **Infrastructure** and **Api** depend on Core, but not on one another.
+
+The following architecture provides multiple benefits:
+
+1. 
+2. Data storage concerns are being separated from the core logic, it enables an easy migration to any database of your choice in the future.
+Independent of frameworks it does not require the existence of some tool or framework
+Testable easy to test – Core has no dependencies on anything external, so writing automated tests is much easier
+Independent of UI logic is kept out of the UI so it is easy to change to another technology – right now you might be using Angular, soon Vue, eventually Blazor!
+Independent of the database data-access concerns are cleanly separated so moving from SQL Server to CosmosDB or otherwise is trivial
+Independent of anything external in fact, Core is completely isolated from the outside world – the difference between a system that will last 3 years, and one that will last 20 years
 
 ### PaymentGateway.Domain
 This contains all entities and enums specific to the domain layer.
