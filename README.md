@@ -16,7 +16,7 @@ Once you have the project files, you can open the solution in IDE of your choice
 This project relies on the following dependencies:
 
 * [.NET 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
-* [MediatR](https://discordnet.dev/guides/other_libs/mediatr.html)
+* [MediatR](https://github.com/jbogard/MediatR)
 * [Entity Framework Core 8](https://learn.microsoft.com/en-us/ef/core/providers/in-memory/?tabs=dotnet-core-cli)
 * [NUnit](https://nunit.org/), [Moq](https://github.com/moq)
 * [Serilog](https://github.com/serilog/serilog/wiki/Getting-Started), [Serilog.Sinks.Console](https://github.com/serilog/serilog/wiki/Getting-Started)
