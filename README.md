@@ -167,13 +167,14 @@ This service simulates an Aquiring Bank. I designed BankSimulator in a way that 
 - Different banks have different SDKs, and it is important to have an ability to switch between different APIs. To introduce some flexibility, I developed IBankAdapter. If Checkout.com would like to partner with a new bank, developers just need to create a corresponding IBankAdappter implementation. 
 - Ability to switch to a different database is important. To make sure it can be done without affecting application logic, I separated data access concerns by using Repository Pattern.
 
-## Areas for improvements
+## Areas for Improvements
 
 - Introduce JWT Authentication to harden the application security. Currently, I implemented authorization only: only the merchant who created a transaction can retrieve additional details about it.
 - Improve data validation across application. Consider using [FluentValidation library](https://docs.fluentvalidation.net/en/latest/index.html) for building strongly-typed validation rules.
 - Ensure idempotency of the transaction creation process by creating a separate endpoint `POST transactions/reserve` for reserving a transactionId, which should then be used to create the actual transaction. 
 - Implement the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) for card number validation to prevent errors and fraudulent activities.
 - Consider event-driven architecture for asyncronous communication with banks. This way `POST transactions/create` endpoint should immediately return a pending status, without waiting for a response from bank.
+- Keep track of all transactions' status updates and corresponding timestamps.
 
 ## Recommended Choice of Cloud Technologies
 
