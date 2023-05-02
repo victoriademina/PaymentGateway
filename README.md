@@ -21,7 +21,7 @@ Follow these simple steps to run the project:
 2. To run the project, simply go to `src/PaymentGateway.Api` folder and execute `dotnet run`. By defailt, Swagger page can be opened on `http://localhost:5252/swagger/index.html`, but you can specify a URL of your choice in `launchSettings.json`.
 3. To run tests, navigate to the root project directory and execute `dotnet test`.
 
-*Optional:* to run the project using Docker, navigate to the root project directory and run `docker-compose up`.
+> Optional: to run the project using Docker, navigate to the root project directory and run `docker-compose up`.
 
 Enjoy! 🙌
 
@@ -40,6 +40,10 @@ This architecture provides multiple benefits, including but not limited to:
 2. **Infrastructure** and **Api** depend on Core, but not on one another.
 3. Data storage concerns are being separated from the business logic, it enables an easy migration to any database of your choice in the future.
 4. As a result, every application layer can be unit-tested independently from the other layers.
+
+For illustration purposes, the diagram below shows the data flow when a user creates a new transaction.
+
+> Note: ideally, the endpoint for creating transactions should be asynchronous, but was not implemented due to the time constraints. See [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements) section below for an overview of how this can be achieved with event-driven architecture.
 
 <p align="center">
   <img src="https://github.com/victoriademina/PaymentGateway/blob/main/images/DataFlowDiagram.jpg" alt="Data Flow Diagram" width="1000"/>
@@ -78,7 +82,7 @@ The Payment Gateway API is a RESTful API that exposes 3 endpoints:
 2. `POST /transactions/create`: This endpoint is used to create a transaction.
 3. `GET /transactions/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
 
-Note: ideally, the merchantId should be passed as a part of JWT Bearer token. Because of the time constraints, it was not implemented but added to [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements).
+> Note: ideally, the merchantId should be passed as a part of JWT Bearer token. Because of the time constraints, it was not implemented but added to [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements).
 
 🚀 **POST /merchants/create**
 
@@ -137,7 +141,7 @@ curl http://localhost:5252/transactions/d211b00e-40b9-4662-a948-eb29fc79e95c/0ec
 }
 ```
 
-Note: the values of codes for transaction statuses and currencies can be found in the [Status](https://github.com/victoriademina/PaymentGateway/blob/main/src/PaymentGateway.Domain/Enums/Status.cs) and [Currency](https://github.com/victoriademina/PaymentGateway/blob/main/src/PaymentGateway.Domain/Enums/Currency.cs) enums.
+> Note: the values of codes for transaction statuses and currencies can be found in the [Status](https://github.com/victoriademina/PaymentGateway/blob/main/src/PaymentGateway.Domain/Enums/Status.cs) and [Currency](https://github.com/victoriademina/PaymentGateway/blob/main/src/PaymentGateway.Domain/Enums/Currency.cs) enums.
 
 ### PaymentGateway.Infrastructure
 
