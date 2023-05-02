@@ -55,6 +55,8 @@ To use the Payment Gateway API, you can send HTTP requests to these endpoints us
 - AWS SQS - a message queuing service queue for enabling event-driven communicaton between BankAdapter and BankSimulator.
 - AWS CodePipelne/CircleCI/Jenkins - set up CI/CD
 
+## Extra mile bonus points
+
 ## Acknowledgements
 
 ## Contributing
