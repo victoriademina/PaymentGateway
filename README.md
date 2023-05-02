@@ -16,9 +16,9 @@ This project relies on the following dependencies:
 ## Getting Started
 
 Follow these simple steps to run the project:
-1. Clone Payment gateway to your local machine. You can download the project files, or clone by SSH: `git clone git@github.com:victoriademina/PaymentGateway.git`
-2. To run the project, simply execute `dotnet run` from `src/PaymentGateway.Api` folder. By defailt, Swagger page will be opened on `http://localhost:5252/swagger/index.html`, but you can specify a localhost of your choice in `launchSettings.json`.
-3. To run tests, execure `dotnet test` from the root directory. 
+1. Clone Payment gateway to your local machine.
+2. To run the project, simply go to `src/PaymentGateway.Api` folder and execute `dotnet run`. By defailt, Swagger page can be opened on `http://localhost:5252/swagger/index.html`, but you can specify a URL of your choice in `launchSettings.json`.
+3. To run tests, navigate to the root project directory and execute `dotnet test`. 
 
 Enjoy! 🙌
 
