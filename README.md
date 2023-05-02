@@ -5,11 +5,12 @@ Coding challenge for Checkout.com
 
 ## Getting Started
 
-To get started with the Payment Gateway API, you need to first clone or download the project files to your local machine. 
+Follow these simple steps to run the project:
+1. Clone Payment gateway to your local machine. You can download the project files, or clone by SSH: `git clone git@github.com:victoriademina/PaymentGateway.git`
+2. To run the project, simply execute `dotnet run` from `src/PaymentGateway.Api` folder. By defailt, Swagger page will be opened on `http://localhost:5252/swagger/index.html`, but you can specify a localhost of your choice in `launchSettings.json`.
+3. To run tests, execure `dotnet test` from the root directory. 
 
-Clone by SSH: `git clone git@github.com:victoriademina/PaymentGateway.git`
-
-Once you have the project files, you can open the solution in IDE of your choice and run the project by running `dotnet run` from PaymentGateway.Api service.
+Enjoy! 
 
 ## Dependencies
 
