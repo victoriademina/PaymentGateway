@@ -63,26 +63,66 @@ This layer contains two controllers:
 - TransactionsController.cs
 
 The Payment Gateway API is a RESTful API that exposes 3 endpoints:
+1. `POST /merchants/create`: This endpoint is used to create a merchant, who then can be used to make transactions via Payment Gateway.
+2. `POST /transactions/create`: This endpoint is used to create a transaction.
+3. `GET /transactions/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
 
-`POST /merchants/create`: This endpoint is used to create a merchant, who then can be used to make transactions via Payment Gateway.
+🚀 POST /merchants/create
 
-**Example:**
+**Request:**
 ```
-Example
+curl -X 'POST' 'http://localhost:5252/merchants/create' -H 'accept: text/plain' -d ''
+```
+**Response:**
+```
+{
+  "merchantId": "845484c6-dd74-4129-88d7-e48c06843869"
+}
 ```
 
-`POST /transactions/create`: This endpoint is used to create a transaction. 
+🚀 POST /transactions/create
 
-**Example:**
+**Request:**
 ```
-Example
+curl -X 'POST' \
+'http://localhost:5252/transactions/create' \
+-H 'accept: text/plain' \
+-H 'Content-Type: application/json' \
+-d '{
+"merchantId": "845484c6-dd74-4129-88d7-e48c06843869",
+"cardDetails": {
+  "cardNumber": "1111 1111 1111 1111",
+  "cvv": "123",
+  "expiryMonth": 12,
+  "expiryYear": 2050,
+  "owner": "Harry Potter"
+},
+"paymentAmount": {
+  "amount": 50,
+  "currency": 0
+}
+}'
+```
+**Response:**
+```
+{
+  "transactionId": "ca95b769-1ddc-4ee8-869e-eacd4cce8217",
+  "status": 1
+}
 ```
 
-`GET /transactions/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
+🚀 GET /transactions/{merchantId}/{transactionId}
 
-**Example:**
+**Request:**
 ```
-Example
+curl -X 'GET' 'http://localhost:5252/transactions/845484c6-dd74-4129-88d7-e48c06843869/ca95b769-1ddc-4ee8-869e-eacd4cce8217' -H 'accept: text/plain'
+```
+**Response:**
+```
+{
+  "transactionId": "ca95b769-1ddc-4ee8-869e-eacd4cce8217",
+  "status": 1
+}
 ```
 
 
