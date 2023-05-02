@@ -1,0 +1,14 @@
+version: "3.9"
+
+networks:
+    localdev:
+        name: localdev
+
+services:
+    api:
+        build: .
+        restart: always
+        ports:
+            - "8000:80"
+        networks:
+            - localdev
