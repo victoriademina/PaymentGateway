@@ -26,11 +26,18 @@ Enjoy! 🙌
 
 The Payment Gateway project is structured as follows:
 
-### BankSimulator
-### PaymentGateway.Api
-### PaymentGateway.Application
 ### PaymentGateway.Domain
+This contains all entities and enums specific to the domain layer.
+
+### BankSimulator
+This service simulates an Aquiring Bank.
+
+### PaymentGateway.Api
+
+### PaymentGateway.Application
+
 ### PaymentGateway.Infrastructure
+
 
 ## Usage
 
@@ -54,13 +61,13 @@ To use the Payment Gateway API, you can send HTTP requests to these endpoints us
 - AWS SQS - a message queuing service queue for enabling event-driven communicaton between BankAdapter and BankSimulator.
 - AWS CodePipelne/CircleCI/Jenkins - set up CI/CD
 
-## Extra mile bonus points
+## Bonus Features
 
-## Acknowledgements
-
-## Contributing
-
-If you want to contribute to the Payment Gateway project, you can create a pull request with your changes. Please make sure that your changes follow the project's coding standards and are thoroughly tested.
+### Data Validation
+### Logging using Serilog
+### Github Workflow CI
+This project is equipped with a continuous integration (CI) workflow that utilizes GitHub Actions to automate the building and testing of the .NET codebase with every commit. This workflow has been carefully crafted to ensure that the project's functionality and stability are maintained at all times.
+### Dependabot
 
 ## License
 
