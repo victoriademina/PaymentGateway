@@ -3,16 +3,7 @@ Coding challenge for Checkout.com
 
 [![.NET](https://github.com/victoriademina/PaymentGateway/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/victoriademina/PaymentGateway/actions/workflows/dotnet.yml)
 
-## Getting Started
-
-Follow these simple steps to run the project:
-1. Clone Payment gateway to your local machine. You can download the project files, or clone by SSH: `git clone git@github.com:victoriademina/PaymentGateway.git`
-2. To run the project, simply execute `dotnet run` from `src/PaymentGateway.Api` folder. By defailt, Swagger page will be opened on `http://localhost:5252/swagger/index.html`, but you can specify a localhost of your choice in `launchSettings.json`.
-3. To run tests, execure `dotnet test` from the root directory. 
-
-Enjoy! 
-
-## Dependencies
+## Prerequisites
 
 This project relies on the following dependencies:
 
@@ -22,15 +13,24 @@ This project relies on the following dependencies:
 * [NUnit](https://nunit.org/), [Moq](https://github.com/moq)
 * [Serilog](https://github.com/serilog/serilog/wiki/Getting-Started), [Serilog.Sinks.Console](https://github.com/serilog/serilog/wiki/Getting-Started)
 
+## Getting Started
+
+Follow these simple steps to run the project:
+1. Clone Payment gateway to your local machine. You can download the project files, or clone by SSH: `git clone git@github.com:victoriademina/PaymentGateway.git`
+2. To run the project, simply execute `dotnet run` from `src/PaymentGateway.Api` folder. By defailt, Swagger page will be opened on `http://localhost:5252/swagger/index.html`, but you can specify a localhost of your choice in `launchSettings.json`.
+3. To run tests, execure `dotnet test` from the root directory. 
+
+Enjoy! 🙌
+
 ## Project Structure
 
 The Payment Gateway project is structured as follows:
 
-* BankSimulator
-* PaymentGateway.Api
-* PaymentGateway.Application
-* PaymentGateway.Domain
-* PaymentGateway.Infrastructure
+### BankSimulator
+### PaymentGateway.Api
+### PaymentGateway.Application
+### PaymentGateway.Domain
+### PaymentGateway.Infrastructure
 
 ## Usage
 
