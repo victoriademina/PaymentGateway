@@ -9,6 +9,6 @@ services:
         build: .
         restart: always
         ports:
-            - "8000:80"
+            - "5252:80"
         networks:
             - localdev
