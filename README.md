@@ -12,13 +12,18 @@ This project relies on the following dependencies:
 * [Entity Framework Core 8](https://learn.microsoft.com/en-us/ef/core/providers/in-memory/?tabs=dotnet-core-cli)
 * [NUnit](https://nunit.org/), [Moq](https://github.com/moq)
 * [Serilog](https://github.com/serilog/serilog/wiki/Getting-Started), [Serilog.Sinks.Console](https://github.com/serilog/serilog/wiki/Getting-Started)
+* [Docker](https://www.docker.com/) (optional, required for running the project in Docker).
 
 ## Getting Started
 
 Follow these simple steps to run the project:
 1. Clone Payment gateway to your local machine.
 2. To run the project, simply go to `src/PaymentGateway.Api` folder and execute `dotnet run`. By defailt, Swagger page can be opened on `http://localhost:5252/swagger/index.html`, but you can specify a URL of your choice in `launchSettings.json`.
-3. To run tests, navigate to the root project directory and execute `dotnet test`. 
+3. To run tests, navigate to the root project directory and execute `dotnet test`.
+
+Optional: to run the project using Docker, follow this steps:
+1. 
+2. 
 
 Enjoy! 🙌
 
@@ -142,6 +147,13 @@ This layer implements communication with all external systems:
 ### BankSimulator
 
 This service simulates an Aquiring Bank. I designed BankSimulator in a way that it purposely provides a different API comparing to IBankAdapter. It demonstrates flexibility and extendability of the chosen architecture. Support of different banks can be added by simply implementing IBankAdapter, and configuring it with Dependency Injection.
+
+## Testing
+
+**Unit tests**
+- [PaymentGateway.Api.Tests](https://github.com/victoriademina/PaymentGateway/tree/main/tests/PaymentGateway.Api.Tests)
+- [PaymentGateway.Application.Tests](https://github.com/victoriademina/PaymentGateway/tree/main/tests/PaymentGateway.Application.Tests)
+- [PaymentGateway.Infrastructure.Tests](https://github.com/victoriademina/PaymentGateway/tree/main/tests/PaymentGateway.Infrastructure.Tests)
 
 
 ## Assumptions
