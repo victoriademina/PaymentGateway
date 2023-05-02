@@ -28,7 +28,7 @@ The project was developed following the [Clean Architecture principles](https://
 According to the Clean Architecture, **Domain** and **Application** layers are at the centre of the design and form the **Core** of the system.
 
 <p align="center">
-  <img src="https://github.com/victoriademina/PaymentGateway/blob/main/images/CleanArchitectureDiagram.png" alt="Image description" width="300"/>
+  <img src="https://github.com/victoriademina/PaymentGateway/blob/main/images/CleanArchitectureDiagram.png" alt="Clean Architecture" width="300"/>
 </p>
 
 This architecture provides multiple benefits, including but not limited to:
@@ -41,6 +41,10 @@ This architecture provides multiple benefits, including but not limited to:
 **Repository pattern** has been used to decouple data access from the rest of the application. It ensures an easier switch to another database in the future, since data access layer will not affect application logic. 
 
 **Command Query Responsibility Segregation (CQRS) pattern** has been used to separate an application into two distinct parts: a command side for changing data, and a query side for reading data. This architecture improves performance and ensures that read and write operations can be scaled up and down independently from each other.
+
+<p align="center">
+  <img src="https://github.com/victoriademina/PaymentGateway/blob/main/images/DataFlowDiagram.jpg" alt="Data Flow Diagram" width="1000"/>
+</p>
 
 ### PaymentGateway.Domain
 
