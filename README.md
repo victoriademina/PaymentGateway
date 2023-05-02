@@ -78,6 +78,8 @@ The Payment Gateway API is a RESTful API that exposes 3 endpoints:
 2. `POST /transactions/create`: This endpoint is used to create a transaction.
 3. `GET /transactions/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
 
+Note: ideally, the merchantId should be passed as a part of JWT Bearer token. Because of the time constraints, it was not implemented but added to [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements).
+
 🚀 **POST /merchants/create**
 
 **Request:**
@@ -134,6 +136,8 @@ curl http://localhost:5252/transactions/d211b00e-40b9-4662-a948-eb29fc79e95c/0ec
   "status": 1
 }
 ```
+
+Note: the values of codes for transaction statuses and currencies can be found in the [Status](https://github.com/victoriademina/PaymentGateway/blob/main/src/PaymentGateway.Domain/Enums/Status.cs) and [Currency](https://github.com/victoriademina/PaymentGateway/blob/main/src/PaymentGateway.Domain/Enums/Currency.cs) enums.
 
 ### PaymentGateway.Infrastructure
 
