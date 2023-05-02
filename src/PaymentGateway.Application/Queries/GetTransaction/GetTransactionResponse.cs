@@ -16,4 +16,9 @@ public class GetTransactionResponse
     /// Status of the transaction.
     /// </summary>
     public Status Status { get; set; }
+    
+    /// <summary>
+    /// Card number used for the transaction.
+    /// </summary>
+    public string MaskedCardNumber { get; set; }
 }

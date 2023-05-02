@@ -24,7 +24,14 @@ public class GetTransactionHandler : IRequestHandler<GetTransactionRequest, GetT
         return new GetTransactionResponse
         {
             TransactionId = transaction.Id,
-            Status = transaction.Status
+            Status = transaction.Status,
+            MaskedCardNumber = MaskCardNumber(transaction.CardNumber)
         };
+    }
+
+    private static string MaskCardNumber(string cardNumber)
+    {
+        var lastFourDigits = cardNumber.Substring(cardNumber.Length - 4);
+        return $"**** **** **** {lastFourDigits}";
     }
 }

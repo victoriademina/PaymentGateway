@@ -46,6 +46,7 @@ public class GetTransactionHandlerTests
         // Assert
         Assert.That(result.TransactionId, Is.EqualTo(_transaction.Id));
         Assert.That(result.Status, Is.EqualTo(Status.Pending));
+        Assert.That(result.MaskedCardNumber, Is.EqualTo("**** **** **** 1111"));
     }
     
     [Test]
