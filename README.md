@@ -53,8 +53,7 @@ This layer contains all entities and enums specific to the domain, such as:
 - Currency
 - Status
 
-### BankSimulator
-This service simulates an Aquiring Bank. I designed BankSimulator in a way that it purposely provides a different API comparing to IBankAdapter. It demonstrates flexibility and extendability of the chosen architecture. Support of different banks can be added by simply implementing IBankAdapter, and configuring it with Dependency Injection. 
+### PaymentGateway.Application 
 
 ### PaymentGateway.Api
 
@@ -125,16 +124,16 @@ curl -X 'GET' 'http://localhost:5252/transactions/845484c6-dd74-4129-88d7-e48c06
 }
 ```
 
-
-### PaymentGateway.Application
-
 ### PaymentGateway.Infrastructure
+
+### BankSimulator
+This service simulates an Aquiring Bank. I designed BankSimulator in a way that it purposely provides a different API comparing to IBankAdapter. It demonstrates flexibility and extendability of the chosen architecture. Support of different banks can be added by simply implementing IBankAdapter, and configuring it with Dependency Injection.
 
 
 ## Assumptions
-- Merchant should be registered. 
-- Bank SDKs are different, and need flexibility. Need to support switch between different bank apis. 
-- We need to switch between databases... repository pattern. 
+- Merchant should be registered first to obtain MerchantId. It can be done by calling `POST merchants/create` endpoint. 
+- Different banks have different SDKs, and it is important to have an ability to switch between different APIs. To introduce some flexibility, I developed IBankAdapter. If Ckeckout.com would like to partner with a new bank, developers just need to create a corresponding IBankAdappter implementation. 
+- Ability to switch to a different database quicky is important. To provide this functionality, I used Repository Pattern to separate data access from application logic.
 
 ## Areas for improvements
 - Authentication JWT
