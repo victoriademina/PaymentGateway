@@ -25,7 +25,7 @@ public class UltimateBankClientAdapter : IBankAdapter
             bankRequest.CardDetails.ExpiryYear,
             bankRequest.CardDetails.Owner,
             bankRequest.PaymentAmount.Amount,
-            bankRequest.PaymentAmount.Currency
+            bankRequest.PaymentAmount.Currency.ToString()
         );
         PaymentStatus status = response.StatusCode switch
         {

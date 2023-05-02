@@ -58,7 +58,7 @@ public class TransactionsControllerTests
         var paymentAmount = new PaymentAmount
         {
             Amount = 44,
-            Currency = "GBP"
+            Currency = Currency.Eur
         };
         _mediator.Setup(_ => _.Send(It.IsAny<CreateTransactionRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new CreateTransactionResponse
         {

@@ -1,6 +1,7 @@
 using BankSimulator.Sdk;
 using PaymentGateway.Application.Common.Bank;
 using PaymentGateway.Domain.Entities;
+using PaymentGateway.Domain.Enums;
 using PaymentGateway.Infrastructure.BankSimulatorAdapter;
 
 namespace PaymentGateway.Infrastructure.Tests.BankSimulatorAdapter;
@@ -71,7 +72,7 @@ public class UltimateBankClientAdapterTests
             new PaymentAmount
             {
                 Amount = 28,
-                Currency = "GBP"
+                Currency = Currency.Usd
             }
         );
     }

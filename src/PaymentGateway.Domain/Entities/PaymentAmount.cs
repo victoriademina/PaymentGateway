@@ -1,3 +1,5 @@
+using PaymentGateway.Domain.Enums;
+
 namespace PaymentGateway.Domain.Entities;
 
 /// <summary>
@@ -13,5 +15,5 @@ public class PaymentAmount
     /// <summary>
     /// The payment currency.
     /// </summary>
-    public string Currency { get; set; }
+    public Currency Currency { get; set; }
 }

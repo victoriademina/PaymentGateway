@@ -31,7 +31,7 @@ public class CreateTransactionHandlerTests
     private static readonly PaymentAmount _paymentAmount = new PaymentAmount
     {
         Amount = 345,
-        Currency = "GBP"
+        Currency = Currency.Gbp
     };
 
     private Mock<IPaymentGatewayRepository> _repository;
