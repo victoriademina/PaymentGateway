@@ -146,29 +146,23 @@ This service simulates an Aquiring Bank. I designed BankSimulator in a way that 
 
 ## Recommended Choice of Cloud Technologies
 
-**Amazon Web Services**
-- EC2 - run back-end
-- DynamoDB - serverless NoSQL database. 
-- AWS SQS - a message queuing service queue for enabling event-driven communicaton between BankAdapter and BankSimulator.
-- AWS CodePipelne/CircleCI/Jenkins - set up CI/CD
+For non-production workloads and futher development, the project can be deployed to any major cloud provider. Assuming that the organisation works on **Awazon Web Services (AWS)**, the cloud architecture can inclide multiple services, including but not limited to:
+
+- [Amazon EC2](https://aws.amazon.com/ec2/) - it provides secure, resizable compute capacity in the cloud. It can be used to host Payment Gateway back-end.
+- [DynamoDB](https://aws.amazon.com/dynamodb/) - fast, flexible NoSQL database service. It can be used to store merchants and transactions details.
+- [AWS CodePipelne](https://aws.amazon.com/codepipeline/), [CircleCI](https://circleci.com/), or [Jenkins](https://www.jenkins.io/) - set up Continious Integration and Continious Deployment (CI/CD) pipelines.
+- [AWS SQS](https://aws.amazon.com/sqs/) - fully managed message queuing that can be used for enabling event-driven communicaton between BankAdapter and other banks, as advised in the [Areas for Improvements](Fully managed message queuing for microservices, distributed systems, and serverless applications).
+
+These services will be sufficient to deploy the project while it is in the MVP stage. When it grows further, it would be advisable to consider introducing [AWS Load Balancer](https://aws.amazon.com/elasticloadbalancing/), as well as follow best practices of cross-regional replication, multi-AZ deployment, and strategies for disaster recovery.
+
+It is recomended to use Infrastructure as Code tools, such as [AWS CloudFormation](https://aws.amazon.com/cloudformation/) or [Terraform](https://www.terraform.io/). It will ensure automation, repeatability, and scalability of infrastructure deployment and management in a consistent and efficient manner.
 
 ## Bonus Features
 
-### Data Validation.
-
-Example
-
-### Logging using Serilog.
-
-Example 
-
-### Github Workflow CI
-
-This project is equipped with a continuous integration (CI) workflow that utilizes GitHub Actions to automate the building and testing of the .NET codebase with every commit.
-
-### Dependabot
-
-Example
+1. **Run the project using Docker.** Please refer to [Getting Started](https://github.com/victoriademina/PaymentGateway#getting-started) section for instructions.
+2. **Logging using Serilog.** All critically-important events were logger using Serilog to improve traceability across application.
+3. **Github Workflow CI.** This project is equipped with a continuous integration (CI) workflow that utilizes GitHub Actions to automate the building and testing of the .NET codebase with every commit.
+4. **Dependabot.** The usage of Dependabot in GitHub helps to automate dependency management and keeps the project up-to-date with the latest security patches and bug fixes.
 
 ## License
 
