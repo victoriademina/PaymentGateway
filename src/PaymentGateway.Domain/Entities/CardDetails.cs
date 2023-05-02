@@ -34,7 +34,8 @@ public class CardDetails
     /// The expiry month is a number between 1 and 12.
     /// </remarks>
     [Required(ErrorMessage = "ExpiryMonth is required.")]
-    [RegularExpression(@"^(0?[1-9]|1[0-2])$", ErrorMessage = "The value must be a string containing a digit from 1 to 12.")]
+    [Range(0, 12, ErrorMessage = "The value must be a string containing a digit from 1 to 12.")]
+    // [RegularExpression(@"^(0?[1-9]|1[0-2])$", ErrorMessage = "The value must be a string containing a digit from 1 to 12.")]
     public int ExpiryMonth { get; set; }
     
     /// <summary>
@@ -44,7 +45,8 @@ public class CardDetails
     /// The expiry year is a four-digit number representing the year the card expires.
     /// </remarks>
     [Required(ErrorMessage = "ExpiryYear is required.")]
-    [RegularExpression(@"^20[2-9][3-9]|[3-9]\d{3}$", ErrorMessage = "The value must be a string containing 4 digits. Year should be equal or greater than 2023.")]
+    [Range(2023, 2050, ErrorMessage = "The value must be a string containing 4 digits. Year should be equal or greater than 2023 and less than 2050.")]
+    // [RegularExpression(@"^20[2-9][3-9]|[3-9]\d{3}$", ErrorMessage = "The value must be a string containing 4 digits. Year should be equal or greater than 2023.")]
     public int ExpiryYear { get; set; }
     
     /// <summary>
