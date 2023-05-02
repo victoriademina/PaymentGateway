@@ -137,7 +137,8 @@ curl http://localhost:5252/transactions/d211b00e-40b9-4662-a948-eb29fc79e95c/0ec
 ```json
 {
   "transactionId": "0ecdbd83-0ca4-4069-ab90-3230521e42e8",
-  "status": 1
+  "status": 1,
+  "maskedCardNumber": "**** **** **** 1111"
 }
 ```
 
