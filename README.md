@@ -25,45 +25,85 @@ Enjoy! 🙌
 ## Project Architecture
 
 The project was developed following the [Clean Architecture principles](https://jasontaylor.dev/clean-architecture-getting-started/). 
-According to the Clean Architecture, **Domain** and **Application** layers are at the centre of the design, the **Core** of the system.
-All dependencies flow inwards and Core has no dependency on any other layer. **Infrastructure** and **Api** depend on Core, but not on one another.
+According to the Clean Architecture, **Domain** and **Application** layers are at the centre of the design and form the **Core** of the system.
 
-The following architecture provides multiple benefits:
+<p align="center">
+  <img src="https://github.com/victoriademina/PaymentGateway/blob/main/images/CleanArchitectureDiagram.png" alt="Image description" width="300"/>
+</p>
 
-1. 
-2. Data storage concerns are being separated from the core logic, it enables an easy migration to any database of your choice in the future.
-Independent of frameworks it does not require the existence of some tool or framework
-Testable easy to test – Core has no dependencies on anything external, so writing automated tests is much easier
-Independent of UI logic is kept out of the UI so it is easy to change to another technology – right now you might be using Angular, soon Vue, eventually Blazor!
-Independent of the database data-access concerns are cleanly separated so moving from SQL Server to CosmosDB or otherwise is trivial
-Independent of anything external in fact, Core is completely isolated from the outside world – the difference between a system that will last 3 years, and one that will last 20 years
+This architecture provides multiple benefits, including but not limited to:
+
+1. All dependencies flow inwards and **Core** that represents business logic has no dependency on any other layer.
+2. **Infrastructure** and **Api** depend on Core, but not on one another.
+3. Data storage concerns are being separated from the business logic, it enables an easy migration to any database of your choice in the future.
+4. As a result, every application layer can be unit-tested independently from the other layers.
+
+**Repository pattern** has been used to decouple data access from the rest of the application. It ensures an easier switch to another database in the future, since data access layer will not affect application logic. 
+
+**Command Query Responsibility Segregation (CQRS) pattern** has been used to separate an application into two distinct parts: a command side for changing data, and a query side for reading data. This architecture improves performance and ensures that read and write operations can be scaled up and down independently from each other.
 
 ### PaymentGateway.Domain
-This contains all entities and enums specific to the domain layer.
+
+This layer contains all entities and enums specific to the domain, such as:
+
+- Merchant
+- Transaction
+- CardDetails
+- PaymentAmount
+- Currency
+- Status
 
 ### BankSimulator
-This service simulates an Aquiring Bank.
+This service simulates an Aquiring Bank. I designed BankSimulator in a way that it purposely provides a different API comparing to IBankAdapter. It demonstrates flexibility and extendability of the chosen architecture. Support of different banks can be added by simply implementing IBankAdapter, and configuring it with Dependency Injection. 
 
 ### PaymentGateway.Api
+
+This layer contains two controllers: 
+- MerchantsController.cs
+- TransactionsController.cs
+
+The Payment Gateway API is a RESTful API that exposes 3 endpoints:
+
+`POST /merchants/create`: This endpoint is used to create a merchant, who then can be used to make transactions via Payment Gateway.
+
+**Example:**
+```
+Example
+```
+
+`POST /transactions/create`: This endpoint is used to create a transaction. 
+
+**Example:**
+```
+Example
+```
+
+`GET /transactions/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
+
+**Example:**
+```
+Example
+```
+
 
 ### PaymentGateway.Application
 
 ### PaymentGateway.Infrastructure
 
 
-## Usage
-
-The Payment Gateway API is a RESTful API that exposes the following endpoints:
-
-* `POST /merchants/create`: This endpoint is used to create a merchant, who then can be used to make transactions via Payment Gateway.
-* `POST /transactions/create`: This endpoint is used to create a transaction. 
-* `GET /transactions/get/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
-
-To use the Payment Gateway API, you can send HTTP requests to these endpoints using a tool such as Postman.
-
 ## Assumptions
+- Merchant should be registered. 
+- Bank SDKs are different, and need flexibility. Need to support switch between different bank apis. 
+- We need to switch between databases... repository pattern. 
 
 ## Areas for improvements
+- Authentication JWT
+- Further data validation - use fluent validation
+- Create a separate endpoint for 
+- Make createtransaction идемпотентным. 
+- Luhn check
+- Event driven architecture for communicating with banks.
+  - create transaction endpoint should return a pending result immediately, without waiting for a redsponce from bank. it should be async.
 
 ## Recommended Choice of Cloud Technologies
 
