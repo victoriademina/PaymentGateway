@@ -38,10 +38,6 @@ This architecture provides multiple benefits, including but not limited to:
 3. Data storage concerns are being separated from the business logic, it enables an easy migration to any database of your choice in the future.
 4. As a result, every application layer can be unit-tested independently from the other layers.
 
-**Repository pattern** has been used to decouple data access from the rest of the application. It ensures an easier switch to another database in the future, since data access layer will not affect application logic. 
-
-**Command Query Responsibility Segregation (CQRS) pattern** has been used to separate an application into two distinct parts: a command side for changing data, and a query side for reading data. This architecture improves performance and ensures that read and write operations can be scaled up and down independently from each other.
-
 <p align="center">
   <img src="https://github.com/victoriademina/PaymentGateway/blob/main/images/DataFlowDiagram.jpg" alt="Data Flow Diagram" width="1000"/>
 </p>
@@ -57,7 +53,16 @@ This layer contains all entities and enums specific to the domain, such as:
 - Currency
 - Status
 
-### PaymentGateway.Application 
+### PaymentGateway.Application
+
+This layer contains all the business logic of the application, organized into three main groups:
+- Common classes and interfaces, e.g. IBankAdapter and IPaymentGatewayRepository.
+- Commands - MediatR handlers for changing data.
+- Queries - MediatR handlers for retrieving data.
+
+**Repository pattern** has been used to decouple data access from the rest of the application. It ensures an easier switch to another database in the future, since data access layer will not affect application logic.
+
+The explicit separation between Commands and Queries follows the **Command Query Responsibility Segregation (CQRS) pattern**. This architecture improves performance and ensures that read and write operations can be scaled up and down independently from each other.
 
 ### PaymentGateway.Api
 
@@ -70,7 +75,7 @@ The Payment Gateway API is a RESTful API that exposes 3 endpoints:
 2. `POST /transactions/create`: This endpoint is used to create a transaction.
 3. `GET /transactions/{merchantId}/{transactionId}`: This endpoint is used to retrieve the transaction details by ID of merchant who made the transaction and payment ID.
 
-🚀 POST /merchants/create
+🚀 **POST /merchants/create**
 
 **Request:**
 ```
@@ -83,7 +88,7 @@ curl -X 'POST' 'http://localhost:5252/merchants/create' -H 'accept: text/plain' 
 }
 ```
 
-🚀 POST /transactions/create
+🚀 **POST /transactions/create**
 
 **Request:**
 ```
@@ -114,7 +119,7 @@ curl -X 'POST' \
 }
 ```
 
-🚀 GET /transactions/{merchantId}/{transactionId}
+🚀 **GET /transactions/{merchantId}/{transactionId}**
 
 **Request:**
 ```
@@ -130,7 +135,12 @@ curl -X 'GET' 'http://localhost:5252/transactions/845484c6-dd74-4129-88d7-e48c06
 
 ### PaymentGateway.Infrastructure
 
+This layer implements communication with all external systems:
+- UltimateBankClientAdapter implements IBankAdapter and can be used to communicate with BankSimulator.
+- PaymentGatewayRepository implements IPaymentGatewayRepository and uses an in-memory database for storing merchants and transactions details.
+
 ### BankSimulator
+
 This service simulates an Aquiring Bank. I designed BankSimulator in a way that it purposely provides a different API comparing to IBankAdapter. It demonstrates flexibility and extendability of the chosen architecture. Support of different banks can be added by simply implementing IBankAdapter, and configuring it with Dependency Injection.
 
 
@@ -144,9 +154,9 @@ This service simulates an Aquiring Bank. I designed BankSimulator in a way that 
 
 - Introduce JWT Authentication to harden the application security. Currently, I implemented authorization only: only the merchant who created a transaction can retrieve additional details about it.
 - Improve data validation across application. Consider using [FluentValidation library](https://docs.fluentvalidation.net/en/latest/index.html) for building strongly-typed validation rules.
-- Ensure idempotency of the transaction creation process by creating a separate endpoint `POST transactions/reserve` for reserving a transactionId. 
+- Ensure idempotency of the transaction creation process by creating a separate endpoint `POST transactions/reserve` for reserving a transactionId, which should then be used to create the actual transaction. 
 - Implement the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) for card number validation to prevent errors and fraudulent activities.
-- Consider event-driven architecture for asyncronous communication with banks. This way `POST transactions/create` endpoint should immediately return a pending status, without waiting for a redsponce from bank.
+- Consider event-driven architecture for asyncronous communication with banks. This way `POST transactions/create` endpoint should immediately return a pending status, without waiting for a response from bank.
 
 ## Recommended Choice of Cloud Technologies
 
@@ -155,7 +165,7 @@ For non-production workloads and futher development, the project can be deployed
 - [Amazon EC2](https://aws.amazon.com/ec2/) - it provides secure, resizable compute capacity in the cloud. It can be used to host Payment Gateway back-end.
 - [DynamoDB](https://aws.amazon.com/dynamodb/) - fast, flexible NoSQL database service. It can be used to store merchants and transactions details.
 - [AWS CodePipelne](https://aws.amazon.com/codepipeline/), [CircleCI](https://circleci.com/), or [Jenkins](https://www.jenkins.io/) - set up Continious Integration and Continious Deployment (CI/CD) pipelines.
-- [AWS SQS](https://aws.amazon.com/sqs/) - fully managed message queuing that can be used for enabling event-driven communicaton between BankAdapter and other banks, as advised in the [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements).
+- [AWS SQS](https://aws.amazon.com/sqs/) - fully managed message queuing that can be used for enabling event-driven communicaton with banks, as advised in the [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements).
 
 These services will be sufficient to deploy the project while it is in the MVP stage. When it grows further, it would be advisable to consider introducing [AWS Load Balancer](https://aws.amazon.com/elasticloadbalancing/), as well as follow best practices of cross-regional replication, multi-AZ deployment, and strategies for disaster recovery.
 
