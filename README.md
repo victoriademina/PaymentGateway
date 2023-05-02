@@ -151,7 +151,7 @@ For non-production workloads and futher development, the project can be deployed
 - [Amazon EC2](https://aws.amazon.com/ec2/) - it provides secure, resizable compute capacity in the cloud. It can be used to host Payment Gateway back-end.
 - [DynamoDB](https://aws.amazon.com/dynamodb/) - fast, flexible NoSQL database service. It can be used to store merchants and transactions details.
 - [AWS CodePipelne](https://aws.amazon.com/codepipeline/), [CircleCI](https://circleci.com/), or [Jenkins](https://www.jenkins.io/) - set up Continious Integration and Continious Deployment (CI/CD) pipelines.
-- [AWS SQS](https://aws.amazon.com/sqs/) - fully managed message queuing that can be used for enabling event-driven communicaton between BankAdapter and other banks, as advised in the [Areas for Improvements](Fully managed message queuing for microservices, distributed systems, and serverless applications).
+- [AWS SQS](https://aws.amazon.com/sqs/) - fully managed message queuing that can be used for enabling event-driven communicaton between BankAdapter and other banks, as advised in the [Areas for Improvements](https://github.com/victoriademina/PaymentGateway#areas-for-improvements).
 
 These services will be sufficient to deploy the project while it is in the MVP stage. When it grows further, it would be advisable to consider introducing [AWS Load Balancer](https://aws.amazon.com/elasticloadbalancing/), as well as follow best practices of cross-regional replication, multi-AZ deployment, and strategies for disaster recovery.
 
