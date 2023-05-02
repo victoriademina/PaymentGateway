@@ -131,18 +131,18 @@ This service simulates an Aquiring Bank. I designed BankSimulator in a way that 
 
 
 ## Assumptions
+
 - Merchant should be registered first to obtain MerchantId. It can be done by calling `POST merchants/create` endpoint. 
-- Different banks have different SDKs, and it is important to have an ability to switch between different APIs. To introduce some flexibility, I developed IBankAdapter. If Ckeckout.com would like to partner with a new bank, developers just need to create a corresponding IBankAdappter implementation. 
-- Ability to switch to a different database quicky is important. To provide this functionality, I used Repository Pattern to separate data access from application logic.
+- Different banks have different SDKs, and it is important to have an ability to switch between different APIs. To introduce some flexibility, I developed IBankAdapter. If Checkout.com would like to partner with a new bank, developers just need to create a corresponding IBankAdappter implementation. 
+- Ability to switch to a different database is important. To make sure it can be done without affecting application logic, I separated data access concerns by using Repository Pattern.
 
 ## Areas for improvements
-- Authentication JWT
-- Further data validation - use fluent validation
-- Create a separate endpoint for 
-- Make createtransaction идемпотентным. 
-- Luhn check
-- Event driven architecture for communicating with banks.
-  - create transaction endpoint should return a pending result immediately, without waiting for a redsponce from bank. it should be async.
+
+- Introduce JWT Authentication to harden the application security. Currently, I implemented authorization only: only the merchant who created a transaction can retrieve additional details about it.
+- Improve data validation across application. Consider using [FluentValidation library](https://docs.fluentvalidation.net/en/latest/index.html) for building strongly-typed validation rules.
+- Ensure idempotency of the transaction creation process by creating a separate endpoint `POST transactions/reserve` for reserving a transactionId. 
+- Implement the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) for card number validation to prevent errors and fraudulent activities.
+- Consider event-driven architecture for asyncronous communication with banks. This way `POST transactions/create` endpoint should immediately return a pending status, without waiting for a redsponce from bank.
 
 ## Recommended Choice of Cloud Technologies
 
@@ -154,11 +154,21 @@ This service simulates an Aquiring Bank. I designed BankSimulator in a way that 
 
 ## Bonus Features
 
-### Data Validation
-### Logging using Serilog
+### Data Validation.
+
+Example
+
+### Logging using Serilog.
+
+Example 
+
 ### Github Workflow CI
-This project is equipped with a continuous integration (CI) workflow that utilizes GitHub Actions to automate the building and testing of the .NET codebase with every commit. This workflow has been carefully crafted to ensure that the project's functionality and stability are maintained at all times.
+
+This project is equipped with a continuous integration (CI) workflow that utilizes GitHub Actions to automate the building and testing of the .NET codebase with every commit.
+
 ### Dependabot
+
+Example
 
 ## License
 
