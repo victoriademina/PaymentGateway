@@ -17,5 +17,6 @@ public class PaymentAmount
     /// <summary>
     /// The payment currency.
     /// </summary>
+    [Required(ErrorMessage = "Currency is required")]
     public Currency Currency { get; set; }
 }
