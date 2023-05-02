@@ -21,9 +21,7 @@ Follow these simple steps to run the project:
 2. To run the project, simply go to `src/PaymentGateway.Api` folder and execute `dotnet run`. By defailt, Swagger page can be opened on `http://localhost:5252/swagger/index.html`, but you can specify a URL of your choice in `launchSettings.json`.
 3. To run tests, navigate to the root project directory and execute `dotnet test`.
 
-Optional: to run the project using Docker, follow this steps:
-1. 
-2. 
+*Optional:* to run the project using Docker, navigate to the root project directory and run `docker-compose up`.
 
 Enjoy! 🙌
 
@@ -83,43 +81,42 @@ The Payment Gateway API is a RESTful API that exposes 3 endpoints:
 🚀 **POST /merchants/create**
 
 **Request:**
-```
-curl -X 'POST' 'http://localhost:5252/merchants/create' -H 'accept: text/plain' -d ''
+```console
+curl -X POST http://localhost:5252/merchants/create
 ```
 **Response:**
-```
+```json
 {
-  "merchantId": "845484c6-dd74-4129-88d7-e48c06843869"
+  "merchantId": "d211b00e-40b9-4662-a948-eb29fc79e95c"
 }
 ```
 
 🚀 **POST /transactions/create**
 
 **Request:**
-```
+```console
 curl -X 'POST' \
 'http://localhost:5252/transactions/create' \
--H 'accept: text/plain' \
 -H 'Content-Type: application/json' \
 -d '{
-"merchantId": "845484c6-dd74-4129-88d7-e48c06843869",
-"cardDetails": {
-  "cardNumber": "1111 1111 1111 1111",
-  "cvv": "123",
-  "expiryMonth": 12,
-  "expiryYear": 2050,
-  "owner": "Harry Potter"
-},
-"paymentAmount": {
-  "amount": 50,
-  "currency": 0
-}
+  "merchantId": "d211b00e-40b9-4662-a948-eb29fc79e95c",
+  "cardDetails": {
+    "cardNumber": "1111 1111 1111 1111",
+    "cvv": "123",
+    "expiryMonth": 12,
+    "expiryYear": 2050,
+    "owner": "Harry Potter"
+  },
+  "paymentAmount": {
+    "amount": 50,
+    "currency": 0
+  }
 }'
 ```
 **Response:**
-```
+```json
 {
-  "transactionId": "ca95b769-1ddc-4ee8-869e-eacd4cce8217",
+  "transactionId": "0ecdbd83-0ca4-4069-ab90-3230521e42e8",
   "status": 1
 }
 ```
@@ -127,13 +124,13 @@ curl -X 'POST' \
 🚀 **GET /transactions/{merchantId}/{transactionId}**
 
 **Request:**
-```
-curl -X 'GET' 'http://localhost:5252/transactions/845484c6-dd74-4129-88d7-e48c06843869/ca95b769-1ddc-4ee8-869e-eacd4cce8217' -H 'accept: text/plain'
+```console
+curl http://localhost:5252/transactions/d211b00e-40b9-4662-a948-eb29fc79e95c/0ecdbd83-0ca4-4069-ab90-3230521e42e8
 ```
 **Response:**
-```
+```json
 {
-  "transactionId": "ca95b769-1ddc-4ee8-869e-eacd4cce8217",
+  "transactionId": "0ecdbd83-0ca4-4069-ab90-3230521e42e8",
   "status": 1
 }
 ```
